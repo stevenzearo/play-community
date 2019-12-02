@@ -3,3 +3,6 @@
 # ~~~~
 
 GET     /throttle                      controllers.demo.ThrottleDemoController.throttledAction
+
+GET     /permission                    controllers.demo.PermissionController.index
+
