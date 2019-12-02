@@ -26,7 +26,7 @@ class ComponentsController(userRepo: MongoUserRepository)(
   class AuthRequest[A](val role: String, userRequest: UserRequest[A]) extends UserRequest(userRequest.user, userRequest)
 
   object AuthAction extends ActionBuilder[UserRequest, AnyContent] with ActionRefiner[Request, UserRequest] {
-    override def parser: BodyParser[AnyContent] = cc.parsers.defaultBodyParser
+    override def parser: BodyParser[AnyContent] = cc.parsers.defaultBodyParser //意味着根据Content-Type header自动解析
     override protected def refine[A](
         request: Request[A]): Future[Either[Result, UserRequest[A]]] = {
       userRepo.findById(request.session("uid")).map {
